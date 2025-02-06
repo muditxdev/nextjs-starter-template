@@ -1,0 +1,26 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# ANSI color codes
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+RESET="\033[0m"
+
+# Get the commit message from the argument
+COMMIT_MESSAGE=$(cat "$1")
+
+# Run commitlint
+if ! npx --no-install commitlint --edit "$1"; then
+  echo -e "${RED}Invalid commit message format:${RESET}"
+  echo -e "${RED}X: ${COMMIT_MESSAGE}${RESET}"
+  echo -e "${GREEN}Please use the following format:${RESET}"
+  echo ""
+  echo "<type>(<scope>): <subject>"
+  echo ""
+  echo "Examples:"
+  echo "- feat(auth): add login functionality"
+  echo "- fix(api): handle 500 error response"
+  echo "- docs: update API usage instructions"
+  echo ""
+  exit 1
+fi

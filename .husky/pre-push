@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Expected hash of pre-commit file
+EXPECTED_HASH="0bfec361f9717acc8701ea3819e43d887d0d27a9"
+
+# Calculate the current hash of the pre-commit file
+CURRENT_HASH=$(git hash-object .husky/pre-commit)
+
+if [ "$CURRENT_HASH" != "$EXPECTED_HASH" ]; then
+  echo "The pre-commit hook has been modified!"
+  exit 1
+fi
