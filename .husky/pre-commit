@@ -10,16 +10,16 @@ RESET="\033[0m"
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
 # Prevent commits to development and main branches
-# if [ "$BRANCH_NAME" = "development" ] || [ "$BRANCH_NAME" = "main" ]; then
-#   echo -e "${RED}You cannot commit directly to the '${BRANCH_NAME}' branch.${RESET}"
-#   exit 1
-# fi
+if [ "$BRANCH_NAME" = "development" ] || [ "$BRANCH_NAME" = "main" ]; then
+   echo -e "${RED}You cannot commit directly to the '${BRANCH_NAME}' branch.${RESET}"
+   exit 1
+ fi
 
 # # Check if branch name starts with "feat/", "fix/", or "hotfix/"
-# if ! [[ "$BRANCH_NAME" =~ ^(feat/|fix/|hotfix/) ]]; then
-#   echo -e "${RED}Branch name must start with 'feat/', 'fix/', or 'hotfix/'.${RESET}"
-#   exit 1
-# fi
+ if ! [[ "$BRANCH_NAME" =~ ^(feat/|fix/|hotfix/) ]]; then
+   echo -e "${RED}Branch name must start with 'feat/', 'fix/', or 'hotfix/'.${RESET}"
+   exit 1
+ fi
 
 # Run lint-staged
 npx lint-staged
