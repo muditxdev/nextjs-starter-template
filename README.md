@@ -19,8 +19,3 @@ Clone the repo and install dependencies:
 git clone https://github.com/muditxdev/nextjs-starter-template.git
 cd nextjs-starter-template
 npm install
-
-👨‍💻 Author
-Mudit Jain
-GitHub: muditxdev
-```
